@@ -1,0 +1,24 @@
+#성공
+1. `python -c 'print "/home/darkelf/" + "/"*59 + "orge"'` aaaaa
+절대경로 이용
+2. ln -s orge `python -c 'print "A"*75'`
+상대경로 이용
+-> "./" 2글자를 뺀 나머지
+3. 디렉토리 
+
+
+#실패
+디렉토리를 만들어서 파일을 실행 했지만 실패
+
+import os
+import sys
+
+postfix = "../orge"
+path = os.path.join(prefix, postfix)
+77-(len(path))
+
+
+prefix = "/home/darkelf/tmp"
+postfix = "../orge"
+path = os.path.join(prefix, postfix)
+77-(len(path))

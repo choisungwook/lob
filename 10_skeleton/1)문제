@@ -1,0 +1,7 @@
+1) argv>2
+2) argv[1][47] == "\xbf"
+3) 환경변수 초기화
+4) save_argc = argc
+5) strcpy
+6) memset(buffer)
+7) for i<save_argc memset(argv[i])
