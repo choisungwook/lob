@@ -1,0 +1,10 @@
+root@osboxes:/# msfvenom --list payload | grep shell_reverse | grep linux
+    linux/aarch64/shell_reverse_tcp                     Connect back to attacker and spawn a command shell
+    linux/armle/shell_reverse_tcp                       Connect back to attacker and spawn a command shell
+    linux/mipsbe/shell_reverse_tcp                      Connect back to attacker and spawn a command shell
+    linux/mipsle/shell_reverse_tcp                      Connect back to attacker and spawn a command shell
+    linux/ppc/shell_reverse_tcp                         Connect back to attacker and spawn a command shell
+    linux/ppc64/shell_reverse_tcp                       Connect back to attacker and spawn a command shell
+    linux/x64/shell_reverse_tcp                         Connect back to attacker and spawn a command shell
+    linux/x86/shell_reverse_tcp                         Connect back to attacker and spawn a command shell
+root@osboxes:/# 
